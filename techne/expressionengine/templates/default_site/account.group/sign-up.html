@@ -1,0 +1,25 @@
+{embed=site/.header}
+	<h2>Sign Up</h2>
+	
+	{exp:lb_account:signup_form name="sign-up" id="sign-up" action=""}
+		<fieldset>
+			<label for="first-name">First Name</label>
+			<input type="text" name="first-name" id="first-name" />
+			
+			<label for="last-name">Last Name</label>
+			<input type="text" name="last-name" id="last-name" />
+			
+			<label for="email">Email</label>
+			<input type="text" name="email" id="email" />
+			
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" />
+			
+			<label for="password">Password</label>
+			<input type="text" name="password" id="password" />
+		</fieldset>
+		<fieldset>
+			<input type="submit" name="submit" value="Sign-Up" />
+		</fieldset>
+	{/exp:lb_account:signup_form}
+{embed=site/.footer}

@@ -1,0 +1,48 @@
+{embed=site/.header}
+	<!-- standard column (main content) -->
+	
+	<h2>Members</h2>
+	<div id="standard-col">
+		
+		{exp:lybc_account:flash_messages}
+			{if flash_message != ""}
+				<div class="errors">
+					<p>{flash_message}</p>
+				</div>
+			{/if}
+		{/exp:lybc_account:flash_messages}
+		
+		<div class="standard-box">
+			<div class="text">
+				<p>Welcome to the member gallery</p>
+				<form>
+					<fieldset>
+						<label for="gall-search">Seach Members</label>
+						<input type="text" name="gall-search" id="gall-search" value="" />
+					</fieldset>
+					<fieldset>
+						<label for="gall-filter">
+						<input type="radio" name="gall-filter" id="gall-filter-profession" value="profession" />by profession</label>
+						<label for="gall-filter">
+						<input type="radio" name="gall-filter" id="gall-filter-name" value="name" />by name</label>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		
+		<div id="business-cards">
+			{embed=snippet/card orientation="Portrait"}
+		</div>
+		
+		<div id="business-cards">
+			{embed=snippet/card orientation="Landscape"}
+		</div>
+		
+		{exp:lybc_account:members}
+			
+		{/exp:lybc_account:members}
+		
+		
+	</div>
+	
+{embed=site/.footer}

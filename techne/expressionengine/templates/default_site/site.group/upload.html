@@ -1,0 +1,80 @@
+{embed=site/.header upload="yes"}
+		
+			<h2>Welcome to the business card uploader</h2>
+			
+			<!-- standard column (main content) -->
+			<div id="full-col">
+				<div id="uploader">
+					{exp:lybc_account:upload_form post="/upload-form" name="upload-form" id="upload-form"}
+					
+					<input type="hidden" name="form-submit" value="form-submit" />
+					<input type="hidden" name="return" value="/upload-thank-you" />
+					{if error_message}
+						<div class="errors">
+							<p>{error_message}</p>
+						</div>		
+					{/if}
+					
+					{if success_message}
+						<div class="success">
+							<p>{success_message}</p>
+						</div>		
+					{/if}
+					
+					<h1>Select a file to upload 2 mb limit</h1><br />
+					<fieldset class="textbox">
+						<div class="prompt">
+							<div class="holding">
+								<label for="image-title">Image Title</label>
+								<input type="text" name="image-title" tabindex="1" id="image-title" value="" class="required full-name" maxlength="128" />
+							</div>
+						</div>
+					</fieldset>
+					
+					<fieldset class="textbox">
+						<div class="prompt">
+							<div class="holding">
+								<label for="image-description">Image Description</label>
+								<input type="text" name="image-description" tabindex="1" id="image-description" value="" class="required full-name" maxlength="128" />
+							</div>
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<label for="campaign-img">Your Image</label>
+						<div class="preview-img">
+							<!-- <img id="prev-thumb" src="{campaign_img}" width="" /> -->
+							<!-- Display default image -->
+							<img id="prev-thumb" src="/i/lybc-uploadimage.png" width="" />
+						</div>
+						<div class="account-imgupload">
+							<label>Upload a File</label>
+							<input id="campaign-img" class="tooltip" type="file" size="20" />
+							<input type="hidden" id="action" name="action" value="{exp:lybc_account:fetch_action_url class="Lybc_account" method="upload_image"}" />
+							<input type="hidden" id="thumb-src" name="thumb-src" value="" />
+							<input type="hidden" id="thumb-file" name="thumb-file" value="" />
+							<input type="hidden" id="thumb-width" name="thumb-width" value="" />
+							<input type="hidden" id="thumb-height" name="thumb-height" value="" />
+						</div>
+						
+						{if segment_3 == "new"}
+						<div>
+							
+							<label><input type="checkbox" name="terms-agree" id="terms-agree" class="required" /> I agree to the <a href="{path=/fundraising/terms-and-conditions/{campaign_parent_id}}" target="_blank">terms and conditions</a></label>
+						</div>
+						{/if}
+						
+						<input type="button" src="/i/screen/btn-cancel.png" value="Cancel" id="cancel-btn" width="81" height="25" alt="Cancel" title="Cancel" />
+						<input type="submit" src="/i/screen/btn-savecampaign.png" value="Upload" id="save-btn" width="136" height="25" alt="Save" title="Save" 
+							{if segment_3 == "new"}class="hide"{/if} />
+						
+					</fieldset>
+					<!-- <input type="text" name="uploader" size="40" id="upload-box" /> 
+					Attach file -->
+					{/exp:lybc_account:upload_form}
+				</div>
+			</div>
+			<!-- /standard column -->
+			
+			
+{embed=site/.footer}

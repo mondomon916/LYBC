@@ -1,0 +1,57 @@
+
+<div class="minor-form">
+	{if embed:page == "home"}
+		<form>
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="search">Search</label>
+						<input type="text" name="search" value="search members" id="search" />
+					</div>
+				</div>
+			</fieldset>
+			<input type="button" name="search-btn" id="search-btn" value="search" />
+		</form>
+	{/if}
+	
+	{if embed:page == "profiles" OR embed:page == "home"}	
+		<h3>Sign In</h3>
+		{exp:lybc_account:sign_in_form post="/sign-in" name="sign-in-form" id="sign-in-form"}
+			{if error_message}
+				<div class="errors">
+					<p>{error_message}</p>
+				</div>		
+			{/if}
+			<input type="hidden" name="form-submit" value="form-submit" />
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="username">Username</label>
+						<input type="text" name="username" tabindex="1" id="username" value="" class="required username" maxlength="128" />
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="password">Password <a href="/account/forgot-password">Forgot?</a></label>
+						<input type="password" name="password" id="password" tabindex="2" value="" class="required password" maxlength="255" />
+					</div>
+				</div>
+			</fieldset>
+			<input type="submit" name="login-btn" id="login-btn" tabindex="5" value="enter" />
+		
+	
+			{if embed:page == "home"}
+				{if error_message == ""}
+				<p>
+					Welcome to leave your business card.
+					<a href="/sign-up" title="Sign up for an account">Sign up</a> today and meet other business
+					professionals in your field.
+				</p>
+				{/if}
+			{/if}
+	
+		{/exp:lybc_account:sign_in_form}
+	{/if}
+</div>

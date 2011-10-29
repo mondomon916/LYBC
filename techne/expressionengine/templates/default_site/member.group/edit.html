@@ -1,0 +1,70 @@
+{embed=site/.header upload="yes"}
+
+	<h2>Edit Profile</h2>
+	<!-- standard column (main content) -->
+	<div id="standard-col">
+		{exp:lybc_account:edit_profile_form post="/member/edit" name="edit-profile-form" id="edit-profile-form"}
+			<input type="hidden" name="form-submit" value="form-submit" />
+			{if error_message}
+				<div class="errors">
+					<p>{error_message}</p>
+				</div>		
+			{/if}
+			{if success_message}
+				<div class="success">
+					<p>{success_message}</p>
+				</div>		
+			{/if}
+			<fieldset>
+				<label for="campaign-img">Your Image</label>
+				<div class="preview-img">
+					<!-- <img id="prev-thumb" src="{campaign_img}" width="" /> -->
+					<!-- Display default image -->
+					<img id="prev-thumb" src="{avatar_filename}" width="" />
+				</div>
+				<div class="account-imgupload">
+					<label>Upload a File</label>
+					<input id="campaign-img" class="tooltip" type="file" size="20" />
+					<input type="hidden" id="action" name="action" value="{exp:lybc_account:fetch_action_url class="Lybc_account" method="upload_image" dir="1"}" />
+					<input type="hidden" id="thumb-src" name="thumb-src" value="" />
+					<input type="hidden" id="thumb-file" name="thumb-file" value="" />
+				</div>
+				
+				{if segment_3 == "new"}
+				<div>
+					
+					<label><input type="checkbox" name="terms-agree" id="terms-agree" class="required" /> I agree to the <a href="{path=/fundraising/terms-and-conditions/{campaign_parent_id}}" target="_blank">terms and conditions</a></label>
+				</div>
+				{/if}
+				
+			</fieldset>
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="location">Location</label>
+						<input type="text" name="location" id="location" value="{location}" class="required location" maxlength="128" />
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="occupation">Occupation</label>
+						<input type="text" name="occupation" id="occupation" value="{occupation}" class="required occupation" maxlength="128" />
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="textbox">
+				<div class="prompt">
+					<div class="holding">
+						<label for="bio">Bio</label>
+						<textarea name="bio" id="bio" class="required bio" cols="20" rows="5">{if bio}{bio}{/if}</textarea>
+					</div>
+				</div>
+			</fieldset>
+			<input type="submit" name="edit-btn" id="edit-btn" value="Edit Profile" />
+			<input type="button" name="cancel-btn" id="cancel-btn" value="Cancel" />
+		{/exp:lybc_account:edit_profile_form}
+		<p><br /><a href="/member/detail/{member_id}">Back to Profile</a></p>
+	</div>
+{embed=site/.footer}

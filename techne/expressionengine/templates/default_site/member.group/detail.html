@@ -1,0 +1,114 @@
+{embed=site/.header script="box-slider"}
+<style>
+	ul.thumbs {
+		list-style-type: none;
+		padding-top: 10px;
+	}
+	
+	.thumbs li {
+		float:left;
+		margin: 3px 3px;
+		padding: 3px 3px;
+	}
+	
+	.drop-shadow-horz img {
+		max-width: 460px;
+		max-height: 260px;
+		width: 460px;
+		height: 260px;
+	}
+	
+	.drop-shadow-vert img {
+		max-width: 274px;
+		max-height: 384px;
+		width: 274px;
+		height: 384px;
+	}
+	
+</style>
+	
+	<!-- standard column (main content) -->
+	<div id="standard-col">
+		
+		<ul id="slider1">
+		{exp:channel:entries channel="business_cards" dynamic="off" author_id="{segment_3}"}
+			{if no_results} 
+				There are no business cards uploaded
+			{/if}
+			<li>
+				<div class="left">
+					{if card_orientation == "Landscape"}
+						<div class="drop-shadow-horz">
+							<img src="{card_image}" id="horz" />
+						</div>
+					{if:else}
+						<div class="drop-shadow-vert">
+							<img src="{card_image}" id="vert" />
+						</div>
+					{/if}
+					<div class="album">{title}</div>
+      				<div class="band">{card_description}</div>
+				</div>
+				<div class="right">
+				</div>
+			</li>
+		{/exp:channel:entries}
+		</ul>
+		
+		<ul class="thumbs">
+			{exp:channel:entries channel="business_cards" dynamic="off" author_id="{segment_3}"}
+				<li>
+					<a href="">
+						{if card_orientation == "Landscape"}
+							<img src="{card_image}" width="73px" height="44px"/>
+						{if:else}
+							<img src="{card_image}" width="34px" height="44px"/>
+						{/if}
+					</a>
+				</li>
+			{/exp:channel:entries}
+		</ul>
+		
+	</div>
+	<!-- /standard column -->
+	
+	<!-- minor-col -->
+	<div id="minor-col">
+		{exp:lybc_account:member_profile}
+		<h1>{username}</h1>
+		
+		<!-- profile-image -->
+		<div id="profile-image">
+			{if avatar_filename != ""}
+			<img src="{avatar_filename}" width="40px" height="40px" />
+			{if:else}
+			<img src="/i/lybc-profile-thumb.jpg" width="40px" height="40px" />
+			{/if}
+			
+		</div>
+		<!-- /profile-image -->
+		
+		<!-- meta-data -->
+		<div id="meta-data">
+			{if location}<p>{location}</p>{/if}
+			{if occupation}<p>{occupation}</p>{/if}
+			<!-- <p class="highlight social-action"><a href="">add to network</a></p>
+			<p class="social-action"><a href="">send message</a></p>  -->
+			{if logged_in}
+				{if member_id == segment_3}
+					<p class="social-action"><a href="/member/edit">edit profile</a></p>
+					<p class="social-action"><a href="/member/logout-submit">sign out</a></p>
+				{/if}
+			{/if}
+		</div>
+		<!-- /meta-data -->
+		
+		<h3>About</h3>
+		<p>
+			{bio}
+		</p>
+		
+		{/exp:lybc_account:member_profile}
+	</div>
+	<!-- /minor-col -->
+{embed=site/.footer}

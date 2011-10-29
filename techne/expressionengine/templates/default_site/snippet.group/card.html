@@ -1,0 +1,57 @@
+
+<ul>
+	{exp:channel:entries 
+		channel="business_cards" 
+		{if embed:orientation}
+		search:card_orientation="={embed:orientation}"
+		{/if}
+		{if embed:spotlight != ""}
+		search:card_spotlight="={embed:spotlight}"
+		{/if}
+	}
+	
+		{if no_results}
+			There are no spot light business cards
+		{/if}
+		<li>
+			<img src="/i/lybc-star-ratings.gif" width="100px" id="ratings" />
+			
+			{if embed:orientation}
+				{if embed:orientation == "Landscape"}
+					<div class="drop-shadow-horz">
+						<img src="{card_image}" id="horz-card" />
+					</div>
+				{if:else}
+					<div class="drop-shadow-vert">
+						<img src="{card_image}" id="vert-card" />
+					</div>
+				{/if}
+			{if:else}
+				<div class="drop-shadow-horz">
+					<img src="{card_image}" id="horz-card" />
+				</div>
+			{/if}
+			
+			<h4>{title} {author_id}</h4>
+			{exp:lybc_account:member_profile author_id="{author_id}"}
+				<div id="profile-image">
+					{if avatar_filename != ""}
+						<img src="{avatar_filename}" width="40px" height="40px" />
+					{if:else}
+						<img src="/i/lybc-profile-thumb.jpg" width="40px" height="40px" />
+					{/if}
+				</div>
+			{/exp:lybc_account:member_profile}
+			
+			<!-- meta-data -->
+			<div id="meta-data">
+				<p><a href="/member/detail/{author_id}"><b>{author}</b></a></p>
+				{if occupation}<p>{occupation}</p>{/if}
+				{if location}<p>{location}</p>{/if}
+				<!-- <p><a>+Add to network</a></p>
+				<p><a>Send message</a></p> -->
+			</div>
+			<!-- /meta-data -->
+		</li>
+	{/exp:channel:entries}
+</ul>

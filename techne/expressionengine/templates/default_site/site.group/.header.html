@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Leave Your Business Card</title>
+	<link rel="stylesheet" href="/c/reset.css" media="screen, projection" type="text/css"/>
+	<link rel="stylesheet" href="/c/screen.css" media="screen, projection" type="text/css"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/j/jquery.validate.min.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#cancel-btn').bind('click', function() {
+				 window.history.go(-1);
+				});
+		})
+	</script>
+	
+	{if embed:type == 'sign-up'}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sign-up-form').validate();
+		});
+	</script>
+	{/if}
+	
+	{if embed:upload == 'yes'}
+	<script type="text/javascript" src="/j/jquery.fileuploader.js"></script>
+	<script type="text/javascript" src="/j/jquery.ajaxupload.js"></script>
+	<script type="text/javascript" src="/j/jquery.tools.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#campaign-form').validate();
+			
+			$("#campaign-end-date").datepicker({
+				minDate: new Date()
+			});
+			
+			// Start the ajax upload script
+			
+			var thumb = $('img#prev-thumb');
+			var thumb_src = $('#thumb-src');
+			var thumb_file = $('#thumb-file');
+			var thumb_width = $('#thumb-width');
+			var thumb_height = $('#thumb-height');
+			
+			// Bind the save button
+			
+			var campaign_id = $('#campaign-id').attr('value');
+			var is_edit = typeof($('campaign-edit').attr('value')) != 'undefined'  ? $('campaign-edit').attr('value') : 'False';
+			
+			new AjaxUpload('campaign-img',{
+				action: $('#action').attr('value')
+				,name: 'userfile'
+				,onSubmit: function(file, extension){
+					console.log(file);
+					
+					$('div.preview-img').addClass('loading');
+				}
+				,onComplete: function(file, response){
+					
+					obj = $.parseJSON(response);
+					
+					thumb.load(function(){
+						$('div.preview-img').removeClass('loading');
+						thumb.unbind();
+					});
+					
+					//'http://www.housingworks.org/i/news/Annie_Tse_ATID.jpg'
+					
+					// change the src value
+					
+					thumb.attr('src', obj.img_src);
+					
+					// change the hidden form value
+					
+					thumb_src.attr('value', obj.img_src);
+					
+					// change the hidden form value
+					
+					thumb_file.attr('value', obj.img_name);
+					
+					// change the hidden form value
+					
+					thumb_width.attr('value', obj.img_width);
+					
+					// change the hidden form value
+					
+					thumb_height.attr('value', obj.img_height);
+				}
+			})
+			
+			
+			// select all desired input fields and attach tooltips to them
+			$(".tooltip").tooltip({
+				// place tooltip on the right edge
+				position: "center right",
+				// a little tweaking of the position
+				offset: [-2, 10],
+				// use the built-in fadeIn/fadeOut effect
+				effect: "fade",
+				// custom opacity setting
+				opacity: 0.7 
+
+			});
+			
+			// bind the cancel button
+			
+			$('#cancel-btn').click(function(){
+				window.location = '/account';
+				return false;
+			});
+			
+			// hide the save button until the T&C are agreed
+			
+			$("#terms-agree").click(function() {
+               checked = $("#terms-agree").attr('checked');
+               
+               if(checked == true){
+            	   $('#save-btn').css('display','inline');
+               }
+               else{
+            	   $('#save-btn').css('display','none');
+               }
+			});
+			
+		});
+	</script>
+	<style>
+		.html-tooltip {
+			display:none;
+			background:#e6eff1;
+			height:163px;
+			padding:40px 30px 10px 30px;
+			width:310px;
+			font-size:13px;
+		}
+		
+		.hide
+		{
+			display:none;
+		}
+	</style>
+	{/if}
+	
+	{if embed:script == 'box-slider'}
+		{embed=site/.js-reference script="box-slider" jquery-script="bxSlider.min"}
+		<script type="text/javascript">
+			$(document).ready(function(){
+				BOX_SLIDER.init();
+			});
+		</script>
+	{/if}
+	
+</head>
+<body>
+
+<div id="wrapper"><!-- wraps the entire page -->
+	
+	<!-- container -->
+	<div id="container">
+		
+		<div id="mainLogo">
+			<a href="/" title=""><img src="/i/lybc-logo.png" width="296px" /></a>
+		</div>
+		
+		<ul id="mainNavRoll">
+			<li id="home-ico"><a href="/" title=""><span></span></a></li>
+			<li id="profiles"><a href="/profiles" title=""><span></span></a></li>
+			<li id="sign-up"><a href="/sign-up" title=""><span></span></a></li>
+			<li id="upload">
+				{if logged_in}
+				<a href="/upload" title="upload"><span></span></a>
+				{if:else}
+				<a href="/sign-in" title="upload"><span></span></a>
+				{/if}
+			</li>
+			<li id="about"><a href="/about" title=""><span></span></a></li>
+		</ul>
+		
+		{if logged_in}
+			<ul id="mainUtility">
+			{exp:lybc_account:member_profile login="true"}
+				<li>
+					{if avatar_filename != ""}
+						<img src="{avatar_filename}" width="40px" height="40px" />
+					{if:else}
+						<img src="/i/lybc-profile-thumb.jpg" width="40px" height="40px" />
+					{/if}
+				</li>
+				<li>
+					<p><a href="/member/detail/{member_id}">{username}</a></p>
+				</li>
+			{/exp:lybc_account:member_profile}
+			</ul>
+		{/if}
+		
+		<!-- primary -->
+		<div id="primary">

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="/c/reset.css" media="screen, projection" type="text/css"/>
+<link rel="stylesheet" href="/c/screen.css" media="screen, projection" type="text/css"/>
+
+<style>
+	#header-img {
+		background: #FFFFFF;
+	}
+</style>
+
+</head>
+<body>
+	
+	
+	<div id="wrapper"><!-- wraps the entire page -->
+		
+		<!-- container -->
+		<div id="container">
+			
+			<div id="header-img">
+				<img src="/i/lybc-logo.png" />
+			</div>
+		
+			<!-- primary -->
+			<div id="primary">
+				<div id="full-col">
+					<h2>Welcome to LeaveYourBusinesscard</h2>
+					<ul>
+						<li>
+							<p>
+								Create a member profile by signing up with LeaveYourBusinessCard.com. 
+								Simply fill in the required areas with your businesss' information, 
+								choose your membership type and you're one step closer to becoming a 
+								valued member.
+							</p>
+						</li>
+						<li>
+							<p>
+								Sign up for updates, and you'll be the first to try the site out.
+							</p>
+							{exp:lybc_account:update_emails name="update-email-form" method="post"}
+								{if success_message}
+									<div class="success">
+										<p>{success_message}</p>
+									</div>		
+								{/if}
+								<input type="text" name="email-update" />
+								<input type="hidden" name="form-submit" value="form-submit" />
+								<input type="submit" name="submit" value="Sign Up" />
+							{/exp:lybc_account:update_emails}
+						</li>
+					</ul>
+					<p>
+						
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
