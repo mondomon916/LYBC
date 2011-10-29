@@ -1,0 +1,787 @@
+/*--------------------------------------------------------------
+	GLOBAL STYLES
+	This is where the sitewide styles live. 
+	Here you can change the font, color, header, and footer styles.
+	
+	FONT STACKS
+	Fedra Sans Sans Screen		"Fedra Sans Screen Regular", Trebuchet MS, Verdana, Arial, sans-serif;
+	
+	COLORS
+	magenta			#cf1974
+	gray			#5e6a71, #cdcccc
+	medGray			#9b9b9b
+	darkGray		#3f3f3f, #999999
+	white			#ffffff
+	yellow			#f2eb18
+	navy			#0e1130
+	purple			#333399
+
+--------------------------------------------------------------*/
+
+html {font-size: 62.5%;}
+
+body {
+	font: 1em/1.3em "Fedra Sans Screen Regular", Trebuchet MS, Verdana, Arial, sans-serif;
+	/*background: #cdcccc url("../i/org-gradient.jpg") repeat-x top ;*/
+	background: #e5e5e5;
+	margin: 0;
+	padding: 0; }
+
+
+/*--------------------------------------------------------------
+	BLOCK LEVEL ELEMENTS
+	Block level elements take up the entire width available.
+--------------------------------------------------------------*/
+
+/* header elements */
+h1 { font-size: 2.8em; color: #000; margin: 0 0 0.8em; }
+h2 { font-size: 2.0em; color: #f2eb18; margin: 0 0 0.8em; }
+h3 { font-size: 1.8em; color: #f2eb18; margin: 0 0 0.8em; }
+h4 { font-size: 1.6em; color: #0e1130; margin: 0 0 0.8em; }
+h5 { font-size: 1.4em; color: #f2eb18; margin: 0 0 0.8em; }
+h6 { font-size: 1.2em; color: #f2eb18; margin: 0 0 0.8em; }
+
+p, ul, dl, ol, table { 
+	color: #3f3f3f; 
+	margin: 0 0 .5em;
+	font: 1.3em/1.5em "Fedra Sans Screen Regular", Trebuchet MS, Verdana, Arial, sans-serif; }
+
+dd, li { }
+ol li { }
+
+blockquote { font-size: 1.8em; line-height:1.3em; margin: 0 0 1em 0; }
+blockquote p, blockquote cite { padding: 0 1.5em; }
+	
+table { }
+th { }
+th, th a { }
+td { }
+
+	
+
+/*--------------------------------------------------------------
+	INLINE LEVEL ELEMENTS
+	Inline level elements only take up the needed space.
+	They do not force new lines.
+--------------------------------------------------------------*/
+
+em { }
+strong { font-family: "Fedra Sans Screen Bold"; font-weight: normal; }
+
+a { color: #009dda; text-decoration: none; }
+a:hover, a:focus { color: #cf1974; }
+
+img { display: block; }
+a img { border: none; }
+
+input, textarea { }
+input:focus, textarea:focus { }
+
+label { display: block; }
+sub, sup { line-height: 0.5; }
+abbr { border: none; }
+
+
+
+/*--------------------------------------------------------------
+	CLASS FLOATS
+	ex: If you want a picture to be on the left side of an
+	article, you can add a class to it.
+--------------------------------------------------------------*/
+
+.nomargin {  margin: 0em; }
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
+
+/*--------------------------------------------------------------
+	GENERAL STRUCTURE
+	Here is where you have general layout/positioning styles.
+	You can control the width, clears, and floats of elements.	
+--------------------------------------------------------------*/
+
+#wrapper { margin: 0px auto; width: 960px; }
+
+	#container { width: 960px; float: left; clear: both; }
+		#main-nav { clear: both; }
+		#sub-nav { clear: both; }	
+		
+		#primary { clear: both; float: right; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; margin-top: 0px; margin-bottom: 20px;}
+			#standard-col { width: 560px; float: left; }
+			#minor-col { width: 240px; float: right; }
+			#full-col {width: 860px; float:left; clear: both;}
+			
+		#secondary { width: 180px; float: left; }
+		#footer { clear: both; background: #f2eb18;}
+		
+/*--------------------------------------------------------------
+	GLOBAL NAVIGATION (#globalNav)
+	These are the styles that control the site-wide
+	navigation (HEAL, ADVOCATE, SHOP, ETC...)
+--------------------------------------------------------------*/
+
+#globalNav {
+	margin: 6px 0;
+	width: 960px; }
+
+#globalNav h1 { margin: 0; padding: 0; }
+
+#globalNav h1 a {
+    width: 160px; height: 23px;
+    background: transparent url(../i/org-logo.png) no-repeat 0 0;
+    float:left;
+    display: block;
+    text-indent: -9999px;
+    overflow: hidden; }
+
+#globalNav ul { 
+	margin: 5px 0;
+	float: right;
+	font-family: "Fedra Sans Screen Bold";
+	text-transform: uppercase;
+	font-weight: normal; }
+	
+		#globalNav ul li { margin-left: 25px; float: left; }
+			#globalNav ul li a { color: #fff; text-decoration: none; }
+			#globalNav ul li a:hover { color: #5e6a71; }
+			
+#globalNav ul.myAccount { 
+	margin: 5px 0;
+	padding: 5px 15px 5px 15px;
+	clear: both;
+	background: #2f2e2e;
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px; }
+	
+	#globalNav ul.myAccount li { 
+		margin: 0;
+		font-family: "Fedra Sans Screen Regular", Trebuchet MS, Verdana, Arial, sans-serif;
+		text-transform: none; }
+
+
+	/*--------------------------------------------------------------
+		MAIN NAVIGATION (#mainNav)
+		This controls the horizontal navigation within the main
+		container box. Here is where you find the sub-pages within
+		a section.
+	--------------------------------------------------------------*/
+	
+	#mainNavRoll {
+    	width: 960px; 
+    	height: 52px;
+    	background: url('/i/lybc-header-icons-6.png') white no-repeat;
+    	margin: 10px auto 0px auto; 
+    	padding: 0;
+    	position: relative;
+    }
+		  	#mainNavRoll li {
+		    	margin: 0; 
+		    	padding: 0; 
+		    	list-style: none;
+		    	position: absolute; 
+		    	top: 0;
+		    }
+		  	#mainNavRoll li, #mainNavRoll a {
+		    	height: 52px; 
+		    	display: block;
+		    	/*outline: 1px solid red;*/
+		    }
+		    
+		    #mainNavRoll #home-ico {left: 410px; width: 79px;}
+		    	#mainNavRoll #home-ico a:hover { background: transparent url('/i/lybc-header-icons-6.png') -410px -52px no-repeat;}
+		    #mainNavRoll #profiles {left: 489px; width: 79px;}
+		    	#mainNavRoll #profiles a:hover { background: transparent url('/i/lybc-header-icons-6.png') -489px -52px no-repeat;}
+		    #mainNavRoll #sign-up {left: 568px; width: 70px;}
+		    	#mainNavRoll #sign-up a:hover { background: transparent url(/i/lybc-header-icons-6.png) -568px -52px no-repeat;}
+		    #mainNavRoll #upload {left: 638px; width: 70px;}
+		    	#mainNavRoll #upload a:hover { background: transparent url(/i/lybc-header-icons-6.png) -638px -52px no-repeat;}
+		    #mainNavRoll #about {left: 708px; width: 70px;}
+		    	#mainNavRoll #about a:hover { background: transparent url(/i/lybc-header-icons-6.png) -708px -52px no-repeat;}
+			/*#mainNavRoll #logo {left: 570px; width: 390px;}
+		    	#mainNavRoll #logo a:hover { background: transparent url(/i/lybc-header-icons-5.png) -570px -96px no-repeat;}
+			*/
+	
+	#mainLogo {
+		/*width: 960px;*/
+		background-color: #FFFFFF;
+		position:relative;
+		top: 10px;
+		padding-bottom: 5px;
+	}
+	
+	#mainUtility {
+		width: 200px;
+		height: 25px;
+		position: relative;
+		left: 790px;
+	}
+		
+		#mainUtility img{
+			float: left;
+			width: 20px;
+			height: 20px;
+		}
+	
+		#mainUtility p {
+			float:left;
+			padding: 0 5px 0 5px;
+			height: 20px;
+		}
+	
+	#mainNav {
+		height: 52px;
+		/*background: #e2e63f url(/i/lybc-menubackground.gif) center center no-repeat;}*/
+		background: #e2e63f url('/i/lybc-header-icons-6.png') no-repeat;
+		margin: 0;
+		padding: 0;
+		width: 960px;}
+		
+			#mainNav ul { margin: 90px 0 0 75px; float: left; }
+			#mainNav ul li { margin: 0 25px 0 0; float: left; }
+				#mainNav ul li a { color: #ffffff; }
+					#mainNav ul li a:hover { color: #f2eb18; text-decoration: none; }
+			
+			#mainNav h1 {	
+				float: right;
+				position: relative;
+				right: 200px;
+				top: 10px;
+				width: 290px;}
+			
+		/*--------------------------------------------------------------
+			SUB NAVIGATION (#subNav)
+			This controls the sub navigation below the main navigation bar.
+		--------------------------------------------------------------*/
+		
+		#subNav {
+			height: 25px;
+			background: #cacaca; }
+			
+				#subNav ul { margin: 4px 0 0 50px; float: left; }
+				#subNav ul li { margin: 0 30px 0 0; float: left; }
+					#subNav ul li a { color: #3f3f3f; }
+						#subNav ul li a:hover { color: #9b9b9b; text-decoration: none; }
+	
+	/*--------------------------------------------------------------
+		SECTION TITLES (#sectionTitle)
+		This div tells you what section you are in (SHOP, ADVOCOATE, ETC.)
+	--------------------------------------------------------------*/
+
+	#sectionTitle { float: left; }
+		#sectionTitle h1 { margin: 25px 0 15px 0; }
+
+
+/*--------------------------------------------------------------
+	PRIMARY DIV (#primary)
+	The primary div wraps all of the content. It's 860px wide
+	with 50px of padding on the sides. It's your full column div.
+--------------------------------------------------------------*/
+
+#primary {
+	width: 860px;
+	padding: 50px 50px 20px 50px;
+	background: #fff; }
+	
+	#primary h1 { padding-bottom: 1em; font-size: 3em; color: #000000; }
+	#primary h2 { padding-bottom: 10px; font-size: 2em; border-bottom: 2px solid #f2eb18; color: #555; margin-bottom: 30px;}
+	
+	/*--------------------------------------------------------------
+		STANDARD-COL DIV (#standard-col)
+		The standard col div is your main content div. This is where
+		the important stuff goes. All that's here is the styling for
+		content inside standard-col.
+	--------------------------------------------------------------*/
+		
+		#standard-col h2 {
+			padding-top: 2em;
+			padding-bottom: 1em;
+			font-size: 2em;
+			color: #000000;
+			width: 350px;
+			float: left;
+		}
+		
+		#standard-col h3 {
+			height: 30px;
+			font-family: "Fedra Sans Screen Bold";
+			font-size: 1.3em;
+			text-transform: uppercase;
+			background: url(../i/org-shadowrule.png) no-repeat center 20px; }
+			
+			/*--------------------------------------------------------------
+				STANDARD-COL BOX (#minor-box)
+				The standard col div is your main content div. This is where
+				the important stuff goes. All that's here is the styling for
+				content inside standard-col.
+			--------------------------------------------------------------*/
+			
+			.standard-box {
+				height: auto;
+				width: 480px;
+				background: #f2eb18;
+				border-top-left-radius: 5px;
+				-moz-border-radius-topleft: 5px;
+				-webkit-border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				-moz-border-radius-topright: 5px;
+				-webkit-border-top-right-radius: 5px;
+				border-bottom-left-radius: 5px;
+				-moz-border-radius-bottomleft: 5px;
+				-webkit-border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				-moz-border-radius-bottomright: 5px;
+				-webkit-border-bottom-right-radius: 5px;
+				clear: both; }
+				
+				.standard-box .text { margin-left: 5px; padding: 5px 15px; background: #f2eb18; width: 400px;}
+
+	/*--------------------------------------------------------------
+		MINOR-COL DIV (#minor-col)
+		The minor-col is where the gray boxes of sub-content live.
+		#minor-col's styles are under layout because all it does is
+		define the width and float of where the column is.
+		
+		.minor-box are the gray boxes themselves. Below is where you
+		style the look and the content of those boxes.
+	--------------------------------------------------------------*/
+		
+			.minor-box {
+				height: auto;
+				width: 240px;
+				background: #9b9b9b;
+				border-top-left-radius: 5px;
+				-moz-border-radius-topleft: 5px;
+				-webkit-border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				-moz-border-radius-topright: 5px;
+				-webkit-border-top-right-radius: 5px;
+				float:left; }
+								
+				.minor-box h4 {
+					margin: 8px 15px 6px 15px;
+					font-family: "Fedra Sans Screen Bold";
+					font-size: 1.2em;
+					text-transform: uppercase; 
+					color: #fff; }
+				.minor-box .text { margin: 0; padding: 5px 15px 5px 15px; background: #f7f7f7; }
+				.minor-box .text ul li { margin: 0 0 0 15px; list-style: square; }
+	
+	/*--------------------------------------------------------------
+		MINOR-FORM (.minor-form)
+		This div tells you the styles for the minor col form
+	--------------------------------------------------------------*/
+	
+			.minor-form h3 {
+				padding-top: 1em;
+				padding-bottom: 1em; 
+				font-size: 2em; 
+				border-bottom: 3px solid #f2eb18; 
+				color: #000000;
+			}
+			
+			.minor-form p {
+				padding-top: 1em;
+			}
+				
+
+/*--------------------------------------------------------------
+	SPOTLIGHT (#spotlight)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+#spotlight {
+	width: 700px;
+	border:none;
+}
+	
+	#spotlight ul { margin: 0px; float: left; }
+			#spotlight ul li { margin-right: 40px; float: left;}
+				#spotlight ul li a { color: #3f3f3f;}
+					#spotlight ul li a:hover { color: #f2eb18; text-decoration: none; }
+					
+
+#single-spotlight {
+	border: none;
+	float: left;
+	margin-bottom: 5em;
+	width: 210px;
+}
+
+	
+	/*--------------------------------------------------------------
+		VERT-CARD (#vert-card)
+		This div tells you the size of the vertical spotlight cards
+	--------------------------------------------------------------*/
+	
+	#vert-card {
+		background: #fff;
+		height: 233px;
+		width: 161px;
+	}
+	
+	/*--------------------------------------------------------------
+		META-DATA (#meta-data)
+		This div tells you the meta-data of the card (Name, Age, Etc)
+	--------------------------------------------------------------*/
+	
+	#meta-data {
+		width: 100px;
+		float:left;
+		padding-left: 10px;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+		
+		#meta-data p { margin: 0px; float: left; font-size: 10px; }
+		#meta-data ul { margin: 0px; float: left;  font-size: 10px; }
+			#meta-data ul li { margin: 0px; float: left; }
+			
+	#member-meta {
+		clear: right;
+	}
+		
+/*--------------------------------------------------------------
+	BUSINESS CARDS (#business-cards)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+#business-cards {
+	width:900px;
+	clear:both;
+	padding-top: 2em;
+}
+	
+	#business-cards ul { margin-bottom: 20px; float: left; }
+			#business-cards ul li { float: left; margin-right: 20px; margin-bottom: 20px; }
+				#business-cards ul li a { color: #3f3f3f; }
+					#business-cards ul li a:hover { color: #f2eb18; text-decoration: none; }
+	
+	/*--------------------------------------------------------------
+		HORZ-CARD (#horz-card)
+		This div tells you the size of the horizontal business cards
+	--------------------------------------------------------------*/
+	
+	#horz-card {
+		background: #fff;
+		height: 160px;
+		width: 231px;
+	}
+	
+		#horz-card ul { margin: 0px; float: left; }
+			#horz-card ul li { margin: 0px; float: left; }
+				#horz-card ul li a { color: #3f3f3f; }
+					#horz-card ul li a:hover { color: #f2eb18; text-decoration: none; }
+	
+
+/*--------------------------------------------------------------
+	META-NAME (.meta-name)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+.meta-name {
+	font-family: 'Fedra Sans Screen Bold', Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+/*--------------------------------------------------------------
+	PROFILE-IMAGE (#profile-image)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+#profile-image {
+	float:left;
+	width: 50px;
+	padding: 0.5em 0;
+}
+
+/*--------------------------------------------------------------
+	DROP-SHADOW (.drop-shadow-vert)
+	This div will be the drop-shadow for the vertical cards
+--------------------------------------------------------------*/
+
+.drop-shadow-vert {
+	margin: 0px;
+    width: 170px;
+    height: 240px;
+    background: url(/i/lybc-drop-shadow.png) top left no-repeat;
+}
+
+	.drop-shadow-vert img {
+	    margin: 0px;
+	    padding: 0px;
+	    width: 170px;
+	    height: 24px;
+	    float: left;
+	}
+	
+.drop-shadow-horz {
+	margin: 0px;
+    width: 240px;
+    height: 170px;
+    background: url(/i/lybc-drop-shadow-horz.png) top left no-repeat;
+}
+
+	.drop-shadow-horz img {
+	    margin: 0px;
+	    padding: 0px;
+	    width: 240px;
+	    height: 24px;
+	    float: left;
+	}
+	
+/*--------------------------------------------------------------
+	VERT-LOGO (#vert-logo)
+	This div will be the vertical logo on each page
+--------------------------------------------------------------*/
+
+#vert-logo {
+	background: transparent url(/i/yellow-vert-logo.gif) no-repeat 0 0;
+	width: 64px;
+	height: 549px;
+	top: 200px;
+	left: 60px;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+}
+
+/*--------------------------------------------------------------
+	GALLERY-VERT (#gallery-vert)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+#gallery-vert {
+	border: none;
+	height: 750px;
+	padding: 2em 0;
+	position: relative;
+	width: 900px;
+}
+	
+	#gallery-vert ul { margin: 0px; float: left;}
+			#gallery-vert ul li { margin: 0px; float: left; }
+				#gallery-vert ul li a { color: #3f3f3f; }
+					#gallery-vert ul li a:hover { color: #f2eb18; text-decoration: none; }
+	
+/*--------------------------------------------------------------
+	GALLERY-HORZ (#gallery-horz)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+#gallery-horz {
+	width:900px;
+	clear:both;
+	padding-top: 2em;
+}
+	
+	#gallery-horz ul { margin: 0px; float: left; }
+			#gallery-horz ul li { float: left; margin-right: 20px; }
+				#gallery-horz ul li a { color: #3f3f3f; }
+					#gallery-horz ul li a:hover { color: #f2eb18; text-decoration: none; }
+
+/*--------------------------------------------------------------
+	HORZ-BORDER (#horz-border)
+	This div tells you what cards are being spotlight
+--------------------------------------------------------------*/
+
+.horz-border {
+	background: #f2eb18;
+	width: 900px;
+	height: 5px;
+	clear: both;
+	margin: 1em 0;
+}
+
+	hr {
+		color: #f2eb18;
+		background-color: #f2eb18;
+		height: 5px;
+		clear: both;
+		margin: 1em 0;
+	}
+
+/*--------------------------------------------------------------
+	PROFILE-SEARCH (#profile-search)
+	This div tells you the styles for the profile search
+--------------------------------------------------------------*/
+
+#profile-search {
+	padding: 1em 0px;
+	width: 560px;
+}
+
+/*--------------------------------------------------------------
+	STEPS (.steps)
+	This div is for the how it works steps
+--------------------------------------------------------------*/
+
+.steps {
+	margin-bottom: 2em;
+	border: none;
+}
+
+	.steps img {
+		float: left;
+	}
+	
+	.steps p {
+		padding: 10px 20px;
+		margin-left: 60px;
+	}
+
+/*--------------------------------------------------------------
+	HIGHLIGHT (.highlight)
+	This class creates the yellow highlight background
+--------------------------------------------------------------*/
+
+.highlight {
+	background: #f2eb18;
+	margin: 0;
+	width: 90px;
+}
+
+/*--------------------------------------------------------------
+	SOCIAL-ACTION (#social-action)
+	This class creates the social action button styles
+--------------------------------------------------------------*/
+
+.social-action {
+	padding-left: 5px;
+	margin-top: 2em;
+	width: 90px;
+}
+
+/*--------------------------------------------------------------
+	MEMBER-ABOUT (#member-about)
+	This creates the styles for the member about paragraph
+--------------------------------------------------------------*/
+
+#member-about {
+	float: left;
+	margin: 0;
+	width: 350px;
+}
+
+/*--------------------------------------------------------------
+	UPLOADER (#uploader)
+	This creates the styles for the uploader div
+--------------------------------------------------------------*/
+
+#uploader {
+	-moz-border-radius: 10px;
+	background-color: #333399;
+	border-radius: 10px;
+	color: #FFFFFF;
+	padding: 25px 100px 30px 40px;
+}
+
+	#uploader h1 {
+		color: #FFFFFF;
+		font-family: "Fedra Sans Screen Regular", Trebuchet MS, Verdana, Arial, sans-serif;
+		font-size: 1.5em;
+		padding-bottom: 0px;
+	}
+	
+/*--------------------------------------------------------------
+	Errors (.errors)
+	This creates the styles for any errors validation or alerts
+--------------------------------------------------------------*/
+
+.errors,  .success {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+	.errors {
+		color: #D63301;
+		background-color: #FFCCBA;
+		background-image: url('/i/attention.png');
+	}
+	
+	.errors p, .error {
+		color: #D63301;
+		line-height: 1em;
+		padding: 0;
+	}
+	
+	.success {
+	    color: #4F8A10;
+	    background-color: #DFF2BF;
+	    background-image:url('/i/success.png');
+	}
+
+/*--------------------------------------------------------------
+	#minor-col p
+	This creates the styles for p tags in the minor-col
+--------------------------------------------------------------*/
+
+	#minor-col p {
+		margin: 0;
+		clear: both;
+	}
+	
+	#minor-col h3 {
+		margin: 20px auto;
+		padding: 20px auto;
+		clear: both;
+	}
+
+/*--------------------------------------------------------------
+	Inputs (.errors)
+	This creates the styles for any form inputs
+--------------------------------------------------------------*/
+
+#sign-up-form .textbox .holding input,
+#sign-in-form .textbox .holding input,
+form .textbox .holding input,
+form .textbox .holding textarea {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.0976562) 0px 1px 2px inset, rgba(255, 255, 255, 0.199219) 0px 1px 0px;
+	border: 1px solid #CCC;
+	border-bottom-left-radius: 4px 4px;
+	border-bottom-right-radius: 4px 4px;
+	border-top-left-radius: 4px 4px;
+	border-top-left-radius: 4px 4px;
+	border-top-right-radius: 4px 4px;
+	border-top-right-radius: 4px 4px;
+	outline: 0px;
+	padding: 8px 6px;
+	width: 220px;
+}
+
+
+/*--------------------------------------------------------------
+	Footer (#footer)
+	This creates the styles the footer
+--------------------------------------------------------------*/
+
+#footer ul {
+	margin: 0 10px;
+	padding: 0 10px;
+	width: 400px;
+}
+
+/*--------------------------------------------------------------
+	Card profiles (.card-profiles)
+	This creates the styles the footer
+--------------------------------------------------------------*/
+
+ul.card-profiles {
+	margin: 0;
+	padding: 0;
+}
+
+	ul.card-profiles li {
+		float: left;
+		padding: 10px 0;
+		margin: 10px 0;
+	}
