@@ -317,6 +317,30 @@ class Lybc_account
 	}
 	
 	/**
+	 * Set Member data
+	 */
+	private function _set_member_data($data=array())
+	{
+		$r_data = array(
+			'username' => $data['username']
+			,'password' => $data['password']
+			,'unique_id' => $this->EE->functions->random('encrypt')
+			,'join_date' => $this->EE->localize->now
+			,'email' => $data['email']
+			,'screen_name' => $data['username']
+			,'ip_address' => $this->EE->input->ip_address()
+			,'language' => ($this->EE->config->item('deft_lang')) ? $this->EE->config->item('deft_lang') : 'english'
+			,'time_format' => ($this->EE->config->item('time_format')) ? $this->EE->config->item('time_format') : 'us'
+			,'timezone' => ($this->EE->config->item('default_site_timezone') && $this->EE->config->item('default_site_timezone') != '') ? $this->EE->config->item('default_site_timezone') : $this->EE->config->item('server_timezone')
+			,'daylight_savings' => ($this->EE->config->item('default_site_dst') && $this->EE->config->item('default_site_dst') != '') ? $this->EE->config->item('default_site_dst') : $this->EE->config->item('daylight_savings')
+			,'group_id' => 4  // 4-Pending, 5-Member
+			,'authcode' => $data['authcode'] //$this->EE->functions->random('alnum', 10)
+		);
+		
+		return $r_data;
+	}
+	
+	/**
 	 * Insert the new member
 	 */
 	private function _insert_member($data=array())
@@ -324,13 +348,13 @@ class Lybc_account
 		//Insert the new member
 		//Use insert_string() to escape_str on the data automatically
 		
-  		$ins = $this->EE->db->query($this->EE->db->insert_string('exp_members', $data));
-  		var_dump($data);
-  		var_dump($ins);
+		$i_data = $this->_set_member_data($data);
+		
+		//$this->_pr($i_data);
+		
+  		$ins = $this->EE->db->query($this->EE->db->insert_string('exp_members', $i_data));
   		
 		$member_id = $this->EE->db->insert_id();
-		
-		var_dump($member_id);
 		
 		//Insert the member data
 		
@@ -338,6 +362,105 @@ class Lybc_account
 		$ins = $this->EE->db->query($this->EE->db->insert_string('exp_member_data', $mdata));
 		
 		return $member_id;
+	}
+	
+	/**
+	 * Delete pending expired members
+	 */
+	private function delete_expired_members()
+	{
+		$expire = time() - (60*60*48);
+		
+		$this->EE->db->query("DELETE FROM exp_members WHERE group_id = 4 AND join_date < '$expire'");
+		
+		return;
+	}
+	
+	/**
+	 * Get pending member
+	 */
+	public function get_pending_member($id='')
+	{
+		$query = $this->EE->db->query("SELECT member_id, group_id FROM exp_members WHERE authcode = '".$this->EE->db->escape_str($id)."'");
+		
+		if ($query->num_rows() == 0)
+		{
+			return FALSE;
+		}
+		
+		return $query;
+	}
+	
+	/**
+	 * Activate a new member
+	 */
+	public function activate_member()
+	{
+		//echo 'yes';
+		
+		// Get the post vars
+		
+		$auth_code  = $this->EE->input->get_post('id',TRUE);
+		
+		// Delete expired members
+		
+		$this->delete_expired_members();
+		
+		// Get the pending member
+		
+		$pending_query = $this->get_pending_member($auth_code);
+		
+		// If no pending member found
+		
+		if($pending_query === FALSE)
+		{
+			// Display an error message
+			
+			return FALSE;
+		}
+		
+		// Get the member_id
+		
+		$member_id = $pending_query->row('member_id');
+		
+		// Set the update data
+		
+  		$data = $this->_set_update_data();
+  		
+  		// Update the member
+		
+		$upd = $this->update_member($member_id, $data);
+		
+		// Redirect to thank you
+		
+		$this->EE->load->helper('url');
+		
+		redirect('/site/activate-thank-you');
+	}
+	
+	/**
+	 * Set update data
+	 */
+	private function _set_update_data()
+	{
+		$r_data = array(
+			'group_id' => 5
+			,'authcode' => NULL
+		);
+		
+		return $r_data;
+	}
+	
+	/**
+	 * Update Members
+	 */
+	public function update_member($member_id, $data)
+	{
+		$sql = $this->EE->db->update_string('exp_members', $data, "member_id = '".$this->EE->db->escape_str($member_id)."'");
+		
+		$query = $this->EE->db->query($sql);
+		
+		return $query;
 	}
 	
 	/**
@@ -395,12 +518,12 @@ class Lybc_account
 		
 		//Send Authorization Email
 		//$action_id = $this->EE->functions->fetch_action_id('Gsn_registration', 'activate_member');
-		$action_class = 'Lybc_registration';
+		$action_class = 'Lybc_account';
 		$action_method = 'activate_member';
 		$data['site_name'] = isset($data['site_name']) ? $data['site_name'] : 'LeaveYourBusinessCard.com';
 		$data['tagline'] = isset($data['tagline']) ? $data['tagline'] : 'LeaveYourBusinessCard is an online resource which creates an easy and convenient method to promote and market any business of any size.';
 		$data['action_id'] = $this->EE->functions->fetch_action_id($action_class, $action_method) === FALSE ? '': $this->EE->functions->fetch_action_id($action_class, $action_method);
-		$data['authcode'] = $this->EE->functions->random('alnum', 10);
+		$data['authcode'] = isset($data['authcode']) ? $data['authcode'] : $this->EE->functions->random('alnum', 10);
 		$data['notify_address'] = $data['email'] != '' ? $data['email'] : 'raymond.r.manalo@gmail.com';
 		$data['email_title'] = isset($data['title']) ? $data['title'] : 'Welcome to LeaveYourBusinessCard';
 		
@@ -496,6 +619,14 @@ class Lybc_account
 	}
 	
 	/**
+	 * Return an authcode
+	 */
+	public function authcode()
+	{
+		return $this->EE->functions->random('alnum', 10);
+	}
+	
+	/**
 	 * Register the new user
 	 */
 	public function register()	
@@ -514,6 +645,11 @@ class Lybc_account
   		
   		$this->send_authorization_email($data);
   		
+  		// Go to thank you page
+  		
+  		$this->EE->load->helper('url');
+		
+		redirect('/sign-up-thank-you');
 	}
 	
 	/**
